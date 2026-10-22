@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { checkProject } from './lua-check-project.mjs';
+import { buildProject } from './lua-build-project.mjs';
+
+const helper = process.env.YMZX_HELPER_FILE;
+test('Lua checks identify syntax, missing dependencies and unknown APIs before packaging', { skip: !helper && 'Set YMZX_HELPER_FILE to installed helper bundle' }, async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lua-check-test-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(dir, 'src'));
+  const entry = path.join(dir, 'src/GameEntry.lua');
+  fs.writeFileSync(entry, 'local x = require "Missing.Module"\nLog:NotAnAPI("test")');
+  let result = checkProject(dir, helper);
+  assert.equal(result.errors[0].kind, 'missing_module');
+  assert.equal(result.errors[0].line, 1);
+  assert.equal(result.warnings[0].kind, 'unknown_api');
+  assert.equal(result.warnings[0].line, 2);
+  await assert.rejects(buildProject(dir, helper), /checks failed/);
+  assert(!fs.existsSync(path.join(dir, 'dist')));
+  fs.writeFileSync(entry, 'local x =');
+  assert.equal(checkProject(dir, helper).errors[0].kind, 'syntax');
+  fs.mkdirSync(path.join(dir, 'src/Common')); fs.writeFileSync(path.join(dir, 'src/Common/Valid.lua'), 'return {}');
+  fs.writeFileSync(entry, 'local x=require "Common.Valid"\nLog:PrintLog("中文")\nlocal Log={}\nLog:UserMethod()');
+  result = checkProject(dir, helper);
+  assert(result.ok);
+  assert.equal(result.warnings.length, 0);
+  assert.equal(result.files, 2);
+});

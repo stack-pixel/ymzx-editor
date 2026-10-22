@@ -1,0 +1,4 @@
+interface:
+  display_name: "元梦之星编辑器"
+  short_description: "一个技能按UI、扣叮、Lua、元件分类编辑地图，复用本地接口与适配器"
+  default_prompt: "使用 $ymzx-editor，按任务选择UI、扣叮、Lua或元件分类，以原生接口、本地CLI及随包Windows适配器编辑、保存并核验，不依赖宿主Computer Use。"

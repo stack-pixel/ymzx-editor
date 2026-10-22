@@ -1,0 +1,11 @@
+.local/
+runtime/
+evidence/
+node_modules/
+.env
+.env.*
+*.log
+*.pem
+*.key
+dist/
+play.json
