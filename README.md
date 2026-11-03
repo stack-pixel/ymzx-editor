@@ -14,6 +14,14 @@
 
 首次使用先读 [连接条件](ymzx-editor/references/connection.md)，再按需选择 UI、扣叮、Lua 或元件分类。需要 Windows、Node.js 22+ 和本机编辑器；Lua 另需用户合法安装的 DreamHelper 1.4.7。版本兼容以包内指纹检查为准，未知版本会拒绝连接安装。
 
+## 原生操作键显隐与布局
+
+需要隐藏跳跃、前扑、加速、托举等原生按键时，先看[原生控件显隐指南](ymzx-editor/references/ui/native-controls.md)。它区分 UI 编辑器的开局显示属性、SDK 类别显隐、自定义控件显隐与角色能力开关，并说明遮挡、旧几何和实际试玩的验证方法。
+
+新增 `native-ui-startup-visibility` 辅助命令，核对已经选中的控件名称和开关状态后，通过正常按钮代理修改并读回。命令不负责选择控件、UI 打包、地图保存或试玩；当前中文属性标题、Widget 结构和状态映射需按实际编辑器版本核对。辅助命令有离线适配器测试，原生流程与离线测试的证据分别记录。
+
+运行时举物尺寸、中心与朝向校准、短动作采样及销毁期间读取见[运行时模型与特效](ymzx-editor/references/components/runtime-display.md)。
+
 ## 范围与限制
 
 - 通过本机接口、CLI 与随包 Windows 适配器操作；只有聊天能力的宿主不能直接控制编辑器。

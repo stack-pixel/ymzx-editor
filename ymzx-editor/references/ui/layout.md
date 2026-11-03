@@ -13,6 +13,9 @@
 
 涉及新布局、屏幕边缘或尺寸调整时读取[跨设备适配](responsive.md)。固定设计坐标换算不等于响应式布局；除作者数据外，还须核验实际viewport、安全区及父级变换后的最终矩形。
 
+
+原生跳跃、前扑、托举等按键的开局显隐与遮挡排查，先看[原生控件显隐](native-controls.md)。SDK 的类别枚举不覆盖单个按键时，继续检查 UI 编辑器属性。
+
 ## 编辑
 
 `native-ui-author.mjs`提供原生属性操作。`selectRow(label, expectedUid)`要求精确显示名称和真实UID；命令形式为`native-ui-author select LABEL UID`。仅匹配当前`GetDisplayedEntryWidgets`条目，正常点击后打开属性并核对UID；重名或错误目标拒绝继续，不发送合成触控回调。目标不在显示条目中时，对真实TreeView使用已核实的滚动操作，再重新枚举。行序号不等于UID。

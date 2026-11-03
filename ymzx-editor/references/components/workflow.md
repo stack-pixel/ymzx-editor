@@ -49,3 +49,5 @@ node scripts/components/run.mjs native-property-control CURRENT_PROPERTY_PANEL E
 正常整图保存，退出重开同一草稿，重新枚举ID、类、变换、材质/数据及资源依赖。只读缓存辅助核对，禁止直接写缓存冒充编辑。保存前接口读回、保存后文件读回、重开与实际试玩分别记录；运行时SpawnActor/SpawnElement不算地图搭建。
 
 试玩覆盖此次修改涉及的路径、交互和碰撞；直接跳到目标位置不能替代相关流程验证。性能按项目指定设备、元件、材质、透明面和特效评估。实际输入遵循[共用验证](../verification.md)。
+
+运行时复制展示的尺寸/枢轴、横放朝向、短动作采样、粒子可见性及对象销毁期间的读取，见[运行时模型与特效](runtime-display.md)。

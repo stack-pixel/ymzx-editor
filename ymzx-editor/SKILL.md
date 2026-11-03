@@ -10,6 +10,7 @@ description: 接入元梦之星PC编辑器，读取与修改原生UI、扣叮、
 | 需求 | 分类与入口 |
 |---|---|
 | 原生控件、布局、本地图片上传与绑定 | [UI](references/ui/workflow.md)，`scripts/ui/` |
+| 隐藏原生跳跃/前扑等按键、清理默认HUD、自定义按钮围绕原生操作区布局 | [原生控件显隐](references/ui/native-controls.md)，再查布局适配 |
 | 扣叮积木、事件、变量、编译与日志 | [扣叮](references/kouding/workflow.md)，`scripts/kouding/` |
 | 独立Lua工程、检查、打包与导入 | [Lua](references/lua/workflow.md)，`scripts/lua/` |
 | 正式场景实例、复制摆放、属性与碰撞 | [元件](references/components/workflow.md)，`scripts/components/` |

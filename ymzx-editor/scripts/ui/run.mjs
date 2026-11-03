@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 const dir=path.dirname(fileURLToPath(import.meta.url));
-const allowed=new Set(['native-ui-inspect','native-ui-document','native-ui-navigation','native-ui-author','native-ui-delegate','native-ui-control','native-ui-call','native-property-control','native-property-inspect','native-numeric-control','native-editor-palette','native-remote-read','native-remote-getters','native-scene-snapshot','read-scene-cache','custom-image-bindings','ui-layout-audit']);
+const allowed=new Set(['native-ui-startup-visibility','native-ui-inspect','native-ui-document','native-ui-navigation','native-ui-author','native-ui-delegate','native-ui-control','native-ui-call','native-property-control','native-property-inspect','native-numeric-control','native-editor-palette','native-remote-read','native-remote-getters','native-scene-snapshot','read-scene-cache','custom-image-bindings','ui-layout-audit']);
 const [tool,...args]=process.argv.slice(2);
 if(!tool||tool==='help'){
  console.log(JSON.stringify({tools:[...allowed],state:'Set YMZX_STATE_DIR to the existing task state directory; relative arguments resolve there.'},null,2));
